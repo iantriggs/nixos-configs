@@ -189,7 +189,7 @@
     curl
     firefox
     home-manager
-    vscode
+    unstable.vscode
     google-chrome
   ];
 
