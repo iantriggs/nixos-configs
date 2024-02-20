@@ -36,4 +36,4 @@ $ sudo nixos-rebuild switch --flake .
 - neovim/nvchad
 - work laptop config
 - fonts
--
+- laptop tuning (battery, fan, etc)

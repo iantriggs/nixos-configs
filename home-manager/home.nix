@@ -1,12 +1,11 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
+{ inputs
+, outputs
+, lib
+, config
+, pkgs
+, ...
 }: {
   # You can import other home-manager modules here
   imports = [
@@ -57,10 +56,9 @@
 
   # Add stuff for your user as you see fit:
   programs.neovim.enable = true;
-  home.packages = with pkgs; [ 
-      steam
-      # sublime4
-    ];
+  home.packages = with pkgs; [
+    steam
+  ];
 
   # basic configuration of git
   programs.git = {
@@ -68,7 +66,7 @@
     userName = "Ian Triggs";
     userEmail = "iantriggs@gmail.com";
     extraConfig = {
-      init.defaultBranch = "main"; 
+      init.defaultBranch = "main";
     };
   };
 
