@@ -15,6 +15,7 @@ $ sudo nixos-rebuild switch --flake .
 - https://search.nixos.org/options
 - https://search.nixos.org/flakes
 - https://mipmip.github.io/home-manager-option-search/
+- [NixOS Wiki](https://nixos.wiki/)
 
 ## TODO:
 
