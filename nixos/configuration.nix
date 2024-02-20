@@ -190,7 +190,7 @@
     firefox
     home-manager
     unstable.vscode
-    google-chrome
+    unstable.google-chrome
   ];
 
 
