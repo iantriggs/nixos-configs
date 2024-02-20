@@ -27,6 +27,8 @@ $ sudo nixos-rebuild switch --flake .
   - vue
   - android-studio
   - adb
+  - terraform
+  - ansible
 - Gnome/DE settings
 - zsh + oh-my-zsh
 - podman/docker and k8s
