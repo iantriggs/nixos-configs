@@ -17,7 +17,13 @@
   unstable-packages = final: _prev: {
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;
-      config.allowUnfree = true;
+      config = {
+        allowUnfree = true;
+        # Required to install Sublime Text 4. Remove when no longer required
+        permittedInsecurePackages = [
+          "openssl-1.1.1w"
+        ];
+      };
     };
   };
 }

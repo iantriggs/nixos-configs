@@ -50,13 +50,16 @@
   home = {
     username = "ian";
     homeDirectory = "/home/ian";
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
   };
 
   # Add stuff for your user as you see fit:
   programs.neovim.enable = true;
   home.packages = with pkgs; [ 
       steam
-      sublime4
+      # sublime4
     ];
 
   # basic configuration of git
