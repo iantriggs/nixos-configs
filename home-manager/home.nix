@@ -57,6 +57,7 @@
   # Add stuff for your user as you see fit:
   programs.neovim.enable = true;
   home.packages = with pkgs; [
+    kubectl
     steam
   ];
 
@@ -70,21 +71,47 @@
     };
   };
 
-  programs.bash = {
+  programs.zsh = {
     enable = true;
-    enableCompletion = true;
-    # TODO add your cusotm bashrc here
-    bashrcExtra = ''
-      export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
-    '';
-
-    # set some aliases, feel free to add more or remove some
     shellAliases = {
       k = "kubectl";
-      urldecode = "python3 -c 'import sys, urllib.parse as ul; print(ul.unquote_plus(sys.stdin.read()))'";
+      l = "ls -lah";
+      ll = "ls -l";
+      update = "sudo nixos-rebuild switch --flake ~/src/nixos-configs/ --show-trace";
+      urldecode = "
+        python3 - c 'import sys, urllib.parse as ul;
+      print(ul.unquote_plus(sys.stdin.read()))'";
       urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
+
+    };
+    history = {
+      path = "${config.xdg.dataHome}/zsh/history";
+      size = 10000;
+    };
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "thefuck" ];
+      theme = "robbyrussell";
     };
   };
+
+  # programs.bash = {
+  #   enable = true;
+  #   enableCompletion = true;
+  #   # TODO add your custom bashrc here
+  #   bashrcExtra = ''
+  #     export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin "
+  #   '';
+
+  #   # set some aliases, feel free to add more or remove some
+  #   shellAliases = {
+  #     k = "kubectl";
+  #     urldecode = "
+  #       python3 - c 'import sys, urllib.parse as ul;
+  #     print(ul.unquote_plus(sys.stdin.read()))'";
+  #     urlencode = "python3 -c 'import sys, urllib.parse as ul; print(ul.quote_plus(sys.stdin.read()))'";
+  #   };
+  # };
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
@@ -95,3 +122,4 @@
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.11";
 }
+

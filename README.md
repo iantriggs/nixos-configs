@@ -11,10 +11,10 @@ $ sudo nixos-rebuild switch --flake .
 
 ## Useful links
 
-- https://search.nixos.org/packages
-- https://search.nixos.org/options
-- https://search.nixos.org/flakes
-- https://mipmip.github.io/home-manager-option-search/
+- [NixOS package search](https://search.nixos.org/packages)
+- [NixOS options search](https://search.nixos.org/options)
+- [NixOS Flakes search](https://search.nixos.org/flakes)
+- [home-manager options search](https://mipmip.github.io/home-manager-option-search/)
 - [NixOS Wiki](https://nixos.wiki/)
 
 ## TODO:
@@ -31,7 +31,7 @@ $ sudo nixos-rebuild switch --flake .
   - terraform
   - ansible
 - Gnome/DE settings
-- zsh + oh-my-zsh
+- zsh + oh-my-zsh + fzf
 - podman/docker and k8s
 - neovim/nvchad
 - work laptop config
