@@ -37,3 +37,4 @@ $ sudo nixos-rebuild switch --flake .
 - work laptop config
 - fonts
 - laptop tuning (battery, fan, etc)
+- Move to this - https://github.com/frogamic/nix-machines/tree/main
