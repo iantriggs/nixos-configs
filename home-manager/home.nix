@@ -174,6 +174,11 @@
     "org/gtk/settings/file-chooser" = {
       clock-format = "12h";
     };
+
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+      natural-scroll = false;
+    };
   };
 
 
