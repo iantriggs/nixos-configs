@@ -60,6 +60,7 @@
   # Packages to install
   home.packages = with pkgs; [
     kubectl
+    kubectx
     steam
     zsh-powerlevel10k
   ];
@@ -107,8 +108,17 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
-      # theme = "powerlevel10k";
+      plugins = [
+        "git"
+        "zsh-interactive-cd"
+        "kubectl"
+        "helm"
+        "minikube"
+        "doctl"
+        "docker"
+        "docker-compose"
+        "dotenv"
+      ];
     };
   };
 

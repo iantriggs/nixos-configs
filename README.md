@@ -31,10 +31,10 @@ $ sudo nixos-rebuild switch --flake .
   - terraform
   - ansible
 - Gnome/DE settings
-- zsh + oh-my-zsh + fzf
 - podman/docker and k8s
 - neovim/nvchad
 - work laptop config
 - fonts
 - laptop tuning (battery, fan, etc)
 - Move to this - https://github.com/frogamic/nix-machines/tree/main
+- kubeconfig
