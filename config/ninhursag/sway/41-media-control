@@ -1,0 +1,7 @@
+# Start ninhursag media-control
+bindsym --no-repeat {
+	XF86Messenger exec playerctl previous
+	XF86Go exec playerctl play-pause
+	Cancel exec playerctl next
+}
+# End ninhursag media-control

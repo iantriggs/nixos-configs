@@ -1,75 +1,88 @@
 {
-  description = "Ian's nix config";
+	inputs = {
+		flake-utils.url = "github:numtide/flake-utils";
+		nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+		nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+		lanzaboote = {
+			url = "github:nix-community/lanzaboote/v0.3.0";
+			inputs.nixpkgs.follows = "nixpkgs";
+			inputs.flake-utils.follows = "flake-utils";
+		};
+	};
 
-  inputs = {
-    # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    # You can access packages and modules from different nixpkgs revs
-    # at the same time. Here's a working example:
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # Also see the 'unstable-packages' overlay at 'overlays/default.nix'.
+	outputs = { self, nixpkgs, ... } @ inputs: let
+		machineFolder = ./machines;
+	in {
+		nixosModules = {
+			default = {
+				imports = with self.nixosModules; [ withImports noImports ];
+			};
+			withImports = {
+				imports = import ./modules;
+			};
+			noImports = {
+				nixpkgs.overlays = [
+					self.overlays.default
+				];
+				nix = {
+					nixPath = [ "nixpkgs=${nixpkgs}" ];
+					registry = {
+						master.to = {
+							type = "github";
+							owner = "NixOS";
+							repo = "nixpkgs";
+							ref = "master";
+						};
+						stable.flake = inputs.nixpkgs-stable;
+						nixpkgs.flake = nixpkgs;
+						n.flake = nixpkgs;
+					};
+				};
+				system.configurationRevision = self.rev or self.dirtyRev or (builtins.trace
+					"WARNING: system.configurationRevision could not be set!"
+					null
+				);
+			};
+		};
 
-    # Home manager
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+		overlays.default = final: prev: {
+			stable = inputs.nixpkgs-stable.legacyPackages."${prev.system}";
+			mylib = import ./mylib prev;
+			mypkgs = self.packages."${prev.system}";
+		};
 
-    # TODO: Add any other flake you might need
-    # hardware.url = "github:nixos/nixos-hardware";
+		lib = import ./lib;
 
-    # Shameless plug: looking for a way to nixify your themes and make
-    # everything match nicely? Try nix-colors!
-    # nix-colors.url = "github:misterio77/nix-colors";
-  };
+		nixosConfigurations = nixpkgs.lib.genAttrs
+			(self.lib.getMachines machineFolder "linux")
+			(name:
+				let
+					config = (import (machineFolder + "/${name}"));
+				in
+				nixpkgs.lib.nixosSystem (config // {
+					modules = config.modules ++ [
+						inputs.lanzaboote.nixosModules.lanzaboote
+						self.nixosModules.default
+						{ networking.hostName = self.lib.mkDefault name; }
+					];
+				})
+			);
 
-  outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , ...
-    } @ inputs:
-    let
-      inherit (self) outputs;
-      # Supported systems for your flake packages, shell, etc.
-      systems = [
-        "aarch64-linux"
-        "i686-linux"
-        "x86_64-linux"
-        "aarch64-darwin"
-        "x86_64-darwin"
-      ];
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-    in
-    {
-      # Your custom packages
-      # Accessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      # Formatter for your nix files, available through 'nix fmt'
-      # Other options beside 'alejandra' include 'nixpkgs-fmt'
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.alejandra);
+		darwinConfigurations = nixpkgs.lib.genAttrs
+			(self.lib.getMachines machineFolder "darwin")
+			(name:
+				let
+					config = (import (machineFolder + "/${name}"));
+				in
+				inputs.darwin.lib.darwinSystem (config // {
+					inputs = {
+						inherit (inputs) darwin nixpkgs;
+					};
+					modules = config.modules ++ [ self.nixosModules.noImports ];
+				})
+			);
 
-      # Your custom packages and modifications, exported as overlays
-      overlays = import ./overlays { inherit inputs; };
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
-      nixosModules = import ./modules/nixos;
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
-      homeManagerModules = import ./modules/home-manager;
-
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
-      nixosConfigurations = {
-        iTri = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/configuration.nix
-          ];
-        };
-      };
-    };
+	} // (inputs.flake-utils.lib.eachSystem inputs.flake-utils.lib.defaultSystems (system: {
+		packages = import ./pkgs nixpkgs.legacyPackages.${system};
+	}));
 }

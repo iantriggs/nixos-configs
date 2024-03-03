@@ -1,40 +1,64 @@
-# Ian's NixOS configs
+# NixOS Machines Configuration
 
-Based on the standard config in [nix-starter-configs](https://github.com/Misterio77/nix-starter-configs) and the [NixOS and Flakes book](https://nixos-and-flakes.thiscute.world/).
+This repository contains my configurations for my Linux PCs that run [NixOS](https://nixos.org).
 
-## Updating
+### Quickstart
+
+To get up and running quickly, run the following in a shell on a NixOS system:
 
 ```bash
-$ sudo nix flake update
-$ sudo nixos-rebuild switch --flake .
+nixos-rebuild switch --no-write-lock-file --flake github:frogamic/nix-machines
 ```
 
-## Useful links
+# Repository Structure
 
-- [NixOS package search](https://search.nixos.org/packages)
-- [NixOS options search](https://search.nixos.org/options)
-- [NixOS Flakes search](https://search.nixos.org/flakes)
-- [home-manager options search](https://mipmip.github.io/home-manager-option-search/)
-- [NixOS Wiki](https://nixos.wiki/)
+## Configuration
 
-## TODO:
+### machines
 
-- Drivers?
-- Dev environments:
-  - nix-env?
-  - python
-  - go
-  - flutter
-  - vue
-  - android-studio
-  - adb
-  - terraform
-  - ansible
-- Gnome/DE settings
-- zsh + oh-my-zsh + fzf
-- podman/docker and k8s
-- neovim/nvchad
-- work laptop config
-- fonts
-- laptop tuning (battery, fan, etc)
-- Move to this - https://github.com/frogamic/nix-machines/tree/main
+This folder contains the machine specific configurations. Each configuration should be named after the machine's hostname. I am not using hardware-configuration per machine.
+
+### services
+
+This is where the bulk of the config sits. Each file here should be a nix module that fully encapsulates a "service" or bundle of packages and config to achieve some purpose.
+
+#### services/base.nix
+
+This is a sort of meta-service that applies some personalisation and baseline configuration and imports a number of other services that would be common across all machines.
+
+#### services/hardware
+
+This is a subset of 'services' relating to specific hardware such as GPU/CPU supporting config and packages.
+
+### config
+
+This is for config files that are consumed by services and built into the nix-store.
+
+### bin
+
+This is where executable files that will be included in the build are stored.
+
+### users
+
+This is where users accounts are configured. Since my PCs are all single user there is only me.
+
+## Overlay
+
+Part of this configuration is an extension to nixpkgs in the form of an overlay supplying `mypkgs` and `mylib`, and a set of modules providing their own options.
+
+### lib
+
+Helper functions to build out the module. Output from the flake as `.lib`.
+
+### mylib
+
+Helper functions that depend on nixpkgs, intended to be used via the included default overlay like `nixpkgs.mylib.<fn>`.
+
+### pkgs
+
+Extra packages, available under `mypkgs` in the overlay.
+
+### Modules
+
+Extra modules to provide more generalised extra configuration for my machines and theoretically other consumers of this flake.
+Technically there is no difference between these and those in `services` except for the intent.
