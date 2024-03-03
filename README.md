@@ -22,7 +22,6 @@ $ sudo nixos-rebuild switch --flake .
 - Drivers?
 - Dev environments:
   - nix-env?
-  - python
   - go
   - flutter
   - vue
@@ -37,4 +36,4 @@ $ sudo nixos-rebuild switch --flake .
 - fonts
 - laptop tuning (battery, fan, etc)
 - Move to this - https://github.com/frogamic/nix-machines/tree/main
-- kubeconfig
+- kubeconfig and other secrets in home-manager

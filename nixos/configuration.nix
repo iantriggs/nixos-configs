@@ -192,20 +192,28 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # Flakes use Git to pull dependencies from data sources
+    # Commandline tools
     curl
-    firefox
+    file
+    fzf
+    wget
+
+    # Dev
     git
+    python3
+    terraform
+    unstable.sublime4
+    unstable.vscode
+    vim
+
+    # Browsers
+    firefox
+    unstable.google-chrome
+
+    # NixOS related
     home-manager
     nil
     nixpkgs-fmt
-    unstable.google-chrome
-    unstable.sublime4
-    unstable.vscode
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget
-    file
-    fzf
   ];
 
   # Always enable the shell system-wide, even if it's already enabled in your Home Manager configuration, otherwise it won't source the necessary files

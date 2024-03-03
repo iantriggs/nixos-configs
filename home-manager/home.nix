@@ -5,6 +5,7 @@
 , lib
 , config
 , pkgs
+, commands
 , ...
 }: {
   # You can import other home-manager modules here
@@ -59,10 +60,18 @@
 
   # Packages to install
   home.packages = with pkgs; [
+    # Commandline tools
+    zsh-powerlevel10k
+    fzf
+
+    # Dev
     kubectl
     kubectx
+
+    # Games
     steam
-    zsh-powerlevel10k
+
+
   ];
 
   # basic configuration of git
@@ -106,6 +115,17 @@
       path = "${config.xdg.dataHome}/zsh/history";
       size = 10000;
     };
+    initExtraBeforeCompInit = ''
+      if [ -n ''\"''\${commands[fzf-share]}''\" ]; then
+        source "$(fzf-share)/completion.zsh"
+      fi 
+    '';
+    initExtra = ''
+      if [ -n ''\"''\${commands[fzf-share]}''\" ]; then
+        source "$(fzf-share)/key-bindings.zsh"
+      fi 
+    '';
+
     oh-my-zsh = {
       enable = true;
       plugins = [
