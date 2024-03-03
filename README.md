@@ -9,6 +9,12 @@ $ sudo nix flake update
 $ sudo nixos-rebuild switch --flake .
 ```
 
+Or use the alias which has been configured in home.nix:
+
+```bash
+$ update
+```
+
 ## Useful links
 
 - [NixOS package search](https://search.nixos.org/packages)
@@ -22,13 +28,8 @@ $ sudo nixos-rebuild switch --flake .
 - Drivers?
 - Dev environments:
   - nix-env?
-  - go
-  - flutter
   - vue
   - android-studio
-  - adb
-  - terraform
-  - ansible
 - Gnome/DE settings
 - podman/docker and k8s
 - neovim/nvchad
@@ -37,3 +38,4 @@ $ sudo nixos-rebuild switch --flake .
 - laptop tuning (battery, fan, etc)
 - Move to this - https://github.com/frogamic/nix-machines/tree/main
 - kubeconfig and other secrets in home-manager
+- automatic updates

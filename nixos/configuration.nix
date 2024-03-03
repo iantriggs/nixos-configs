@@ -138,6 +138,8 @@
   # Steam config
   hardware.opengl.driSupport32Bit = true;
 
+  programs.adb.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -172,6 +174,7 @@
         ];
         # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
         extraGroups = [
+          "adbusers"
           "networkmanager"
           "wheel"
         ];
@@ -192,6 +195,10 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # Browsers
+    firefox
+    unstable.google-chrome
+
     # Commandline tools
     curl
     file
@@ -199,16 +206,18 @@
     wget
 
     # Dev
+    android-tools
+    ansible
     git
+    go
     python3
     terraform
     unstable.sublime4
     unstable.vscode
     vim
 
-    # Browsers
-    firefox
-    unstable.google-chrome
+    # Gnome
+    gnome.gnome-tweaks
 
     # NixOS related
     home-manager
@@ -219,6 +228,8 @@
   # Always enable the shell system-wide, even if it's already enabled in your Home Manager configuration, otherwise it won't source the necessary files
   programs.zsh.enable = true;
 
+  # Enable the DConf configuration system
+  programs.dconf.enable = true;
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
