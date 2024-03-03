@@ -132,6 +132,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Fwupdmgr
+  services.fwupd.enable = true;
+
   # Steam config
   hardware.opengl.driSupport32Bit = true;
 
@@ -201,11 +204,20 @@
     unstable.vscode
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    file
   ];
 
   # Always enable the shell system-wide, even if it's already enabled in your Home Manager configuration, otherwise it won't source the necessary files
   programs.zsh.enable = true;
 
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
+
+
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
 }
+

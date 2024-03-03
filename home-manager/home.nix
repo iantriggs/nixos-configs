@@ -56,9 +56,12 @@
 
   # Add stuff for your user as you see fit:
   programs.neovim.enable = true;
+
+  # Packages to install
   home.packages = with pkgs; [
     kubectl
     steam
+    zsh-powerlevel10k
   ];
 
   # basic configuration of git
@@ -73,6 +76,20 @@
 
   programs.zsh = {
     enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    plugins = [
+      {
+        name = "powerlevel10k";
+        src = pkgs.zsh-powerlevel10k;
+        file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      }
+      {
+        name = "powerlevel10k-config";
+        src = lib.cleanSource ./configs/p10k;
+        file = "p10k.zsh";
+      }
+    ];
     shellAliases = {
       k = "kubectl";
       l = "ls -lah";
@@ -91,7 +108,7 @@
     oh-my-zsh = {
       enable = true;
       plugins = [ "git" "thefuck" ];
-      theme = "robbyrussell";
+      theme = "powerlevel10k";
     };
   };
 
