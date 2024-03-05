@@ -180,6 +180,10 @@
       tap-to-click = true;
       natural-scroll = false;
     };
+
+    "org/gnome/desktop/interface" = {
+      font-antialiasing = "rgba";
+    };
   };
 
 
