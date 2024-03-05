@@ -29,7 +29,6 @@ $ update
 - Dev environments:
   - nix-env?
   - vue
-  - android-studio
 - Gnome/DE settings
 - podman/docker and k8s
 - neovim/nvchad

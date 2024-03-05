@@ -132,6 +132,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable fprint
+  services.fprintd.enable = true;
+
   # Fwupdmgr
   services.fwupd.enable = true;
 
