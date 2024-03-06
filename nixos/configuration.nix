@@ -116,6 +116,20 @@
     LC_TIME = "en_AU.UTF-8";
   };
 
+  # Automatic updates
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L" # print build logs
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
+
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -136,7 +150,7 @@
   services.printing.enable = true;
 
   # Enable fprint
-  services.fprintd.enable = true;
+  services.fprintd.enable = false;
 
   # Fwupdmgr
   services.fwupd.enable = true;
@@ -220,6 +234,7 @@
     terraform
     unstable.sublime4
     unstable.vscode
+    unstable.wireshark
     vim
 
     # Gnome
