@@ -26,7 +26,7 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -68,14 +68,14 @@
     flutter
     kubectl
     kubectx
-    unstable.android-studio
+    android-studio
 
     # Games
     steam
 
     # Gnome Extensions
-    gnomeExtensions.user-themes
-    gnomeExtensions.material-shell
+    # gnomeExtensions.user-themes
+    # gnomeExtensions.material-shell
 
   ];
 
@@ -151,40 +151,40 @@
 
   # Gnome settings
   # Use `dconf watch /` to track stateful changes you are doing, then set them here.
-  dconf.settings = {
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = [
+  # dconf.settings = {
+  #   "org/gnome/shell" = {
+  #     disable-user-extensions = false;
+  #     enabled-extensions = [
 
-      ];
-      favorite-apps = [
-        "google-chrome.desktop"
-        "org.gnome.Console.desktop"
-        "code.desktop"
-        "org.gnome.Nautilus.desktop"
-        "sublime_text.desktop"
-      ];
-    };
+  #     ];
+  #     favorite-apps = [
+  #       "google-chrome.desktop"
+  #       "org.gnome.Console.desktop"
+  #       "code.desktop"
+  #       "org.gnome.Nautilus.desktop"
+  #       "sublime_text.desktop"
+  #     ];
+  #   };
 
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-    "org/gnome/desktop/interface" = {
-      clock-format = "12h";
-    };
-    "org/gtk/settings/file-chooser" = {
-      clock-format = "12h";
-    };
+  #   "org/gnome/desktop/interface" = {
+  #     color-scheme = "prefer-dark";
+  #   };
+  #   "org/gnome/desktop/interface" = {
+  #     clock-format = "12h";
+  #   };
+  #   "org/gtk/settings/file-chooser" = {
+  #     clock-format = "12h";
+  #   };
 
-    "org/gnome/desktop/peripherals/touchpad" = {
-      tap-to-click = true;
-      natural-scroll = false;
-    };
+  #   "org/gnome/desktop/peripherals/touchpad" = {
+  #     tap-to-click = true;
+  #     natural-scroll = false;
+  #   };
 
-    "org/gnome/desktop/interface" = {
-      font-antialiasing = "rgba";
-    };
-  };
+  #   "org/gnome/desktop/interface" = {
+  #     font-antialiasing = "rgba";
+  #   };
+  # };
 
 
 

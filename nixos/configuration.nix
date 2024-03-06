@@ -38,7 +38,7 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -54,7 +54,12 @@
     config = {
       # Disable if you don't want unfree packages
       allowUnfree = true;
+      # Required to install Sublime Text 4. Remove when no longer required
+      permittedInsecurePackages = [
+        "openssl-1.1.1w"
+      ];
     };
+
   };
 
 
@@ -88,6 +93,13 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.initrd.luks.devices."luks-6bd1a01a-c259-445c-bdb5-7e79318c2296".device = "/dev/disk/by-uuid/6bd1a01a-c259-445c-bdb5-7e79318c2296";
+
+  # Plymouth
+  boot.initrd.systemd.enable = true;
+  boot.kernelParams = [ "quiet" ];
+  boot.plymouth.enable = true;
+  boot.plymouth.theme = "breeze";
+
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -135,23 +147,30 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.desktopManager.gnome.enable = true;
   # services.xserver.displayManager.gdm.settings = {
 
   # };
 
+  services.xserver.displayManager.sddm.enable = true;
+  services.xserver.desktopManager.plasma6.enable = true;
+  services.xserver.displayManager.sddm.wayland.enable = true;
+
+
   # Configure keymap in X11
   services.xserver = {
-    layout = "au";
-    xkbVariant = "";
+    xkb = {
+      layout = "au";
+      variant = "";
+    };
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
   # Enable fprint
-  services.fprintd.enable = false;
+  services.fprintd.enable = true;
 
   # Fwupdmgr
   services.fwupd.enable = true;
@@ -218,13 +237,7 @@
   environment.systemPackages = with pkgs; [
     # Browsers
     firefox
-    unstable.google-chrome
-
-    # Commandline tools
-    curl
-    file
-    fzf
-    wget
+    google-chrome
 
     # Dev
     android-tools
@@ -233,18 +246,31 @@
     go
     python3
     terraform
-    unstable.sublime4
-    unstable.vscode
-    unstable.wireshark
+    sublime4
+    vscode
+    wireshark
     vim
 
     # Gnome
-    gnome.gnome-tweaks
+    # gnome.gnome-tweaks
+
+    # KDE
+    plasma-browser-integration
+    wayland-utils
 
     # NixOS related
     home-manager
     nil
     nixpkgs-fmt
+
+    # System tools and commandline tools
+    aha
+    curl
+    file
+    fzf
+    pciutils
+    wget
+
   ];
 
   # Always enable the shell system-wide, even if it's already enabled in your Home Manager configuration, otherwise it won't source the necessary files
@@ -256,8 +282,6 @@
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
-
-
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";

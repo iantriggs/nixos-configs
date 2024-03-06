@@ -37,4 +37,4 @@ $ update
 - laptop tuning (battery, fan, etc)
 - Move to this - https://github.com/frogamic/nix-machines/tree/main
 - kubeconfig and other secrets in home-manager
-- automatic updates
+- refactor and modularise
