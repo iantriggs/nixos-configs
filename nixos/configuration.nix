@@ -85,7 +85,12 @@
     auto-optimise-store = true;
   };
 
-  # FIXME: Add the rest of your current configuration
+  nix.gc = {
+    automatic = true;
+    dates = "02:00";
+    persistent = true;
+    options = "--delete-older-than 10d";
+  };
 
   networking.hostName = "iTri";
 
@@ -169,8 +174,8 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  # Enable fprint
-  services.fprintd.enable = true;
+  # Enable fprint - disabled for now as the implementation seems buggy
+  services.fprintd.enable = false;
 
   # Fwupdmgr
   services.fwupd.enable = true;
@@ -179,6 +184,7 @@
   hardware.opengl.driSupport32Bit = true;
 
   programs.adb.enable = true;
+  programs.wireshark.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -217,6 +223,7 @@
           "adbusers"
           "networkmanager"
           "wheel"
+          "wireshark"
         ];
       };
     };
@@ -248,7 +255,6 @@
     terraform
     sublime4
     vscode
-    wireshark
     vim
 
     # Gnome
@@ -265,11 +271,13 @@
 
     # System tools and commandline tools
     aha
+    clinfo
     curl
     file
     fzf
     pciutils
     wget
+    wireshark
 
   ];
 
