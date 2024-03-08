@@ -110,7 +110,7 @@
       l = "ls -lah";
       ll = "ls -l";
       update = "sudo nixos-rebuild switch --flake ~/src/nixos-configs/ --show-trace";
-      update-flake = "sudo nix flake update ~/src/nixos-configs/";
+      update-flake = "nix flake update ~/src/nixos-configs/";
       urldecode = "
         python3 - c 'import sys, urllib.parse as ul;
       print(ul.unquote_plus(sys.stdin.read()))'";

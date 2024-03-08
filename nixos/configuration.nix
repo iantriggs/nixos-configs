@@ -152,15 +152,16 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
   # services.xserver.displayManager.gdm.settings = {
 
   # };
 
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
-  services.xserver.displayManager.sddm.wayland.enable = true;
+  # Enable KDE
+  # services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma6.enable = true;
+  # services.xserver.displayManager.sddm.wayland.enable = true;
 
 
   # Configure keymap in X11
@@ -258,11 +259,11 @@
     vim
 
     # Gnome
-    # gnome.gnome-tweaks
+    gnome.gnome-tweaks
 
     # KDE
-    plasma-browser-integration
-    wayland-utils
+    # plasma-browser-integration
+    # wayland-utils
 
     # NixOS related
     home-manager
