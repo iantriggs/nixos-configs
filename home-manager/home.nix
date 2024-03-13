@@ -74,7 +74,7 @@
     steam
 
     # Gnome Extensions
-    # gnomeExtensions.user-themes
+    gnomeExtensions.user-themes
     # gnomeExtensions.material-shell
 
   ];

@@ -87,7 +87,7 @@
 
   nix.gc = {
     automatic = true;
-    dates = "02:00";
+    dates = "01:00";
     persistent = true;
     options = "--delete-older-than 10d";
   };
@@ -100,10 +100,10 @@
   boot.initrd.luks.devices."luks-6bd1a01a-c259-445c-bdb5-7e79318c2296".device = "/dev/disk/by-uuid/6bd1a01a-c259-445c-bdb5-7e79318c2296";
 
   # Plymouth
-  boot.initrd.systemd.enable = true;
-  boot.kernelParams = [ "quiet" ];
-  boot.plymouth.enable = true;
-  boot.plymouth.theme = "breeze";
+  # boot.initrd.systemd.enable = true;
+  # boot.kernelParams = [ "quiet" ];
+  # boot.plymouth.enable = true;
+  # boot.plymouth.theme = "breeze";
 
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -274,9 +274,11 @@
     aha
     clinfo
     curl
+    dig
     file
     fzf
     pciutils
+    speedtest-cli
     wget
     wireshark
 

@@ -5,13 +5,14 @@ Based on the standard config in [nix-starter-configs](https://github.com/Misteri
 ## Updating
 
 ```bash
-$ sudo nix flake update
+$ nix flake update
 $ sudo nixos-rebuild switch --flake .
 ```
 
-Or use the alias which has been configured in home.nix:
+Or use the aliases which has been configured in home.nix:
 
 ```bash
+$ update-flake
 $ update
 ```
 
