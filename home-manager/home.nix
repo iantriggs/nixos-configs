@@ -65,10 +65,11 @@
     fzf
 
     # Dev
+    android-studio
     flutter
     kubectl
     kubectx
-    android-studio
+    uv
 
     # Games
     steam

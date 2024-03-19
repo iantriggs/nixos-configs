@@ -186,6 +186,7 @@
 
   programs.adb.enable = true;
   programs.wireshark.enable = true;
+  programs.virt-manager.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
