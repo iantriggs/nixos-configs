@@ -154,40 +154,48 @@
 
   # Gnome settings
   # Use `dconf watch /` to track stateful changes you are doing, then set them here.
-  # dconf.settings = {
-  #   "org/gnome/shell" = {
-  #     disable-user-extensions = false;
-  #     enabled-extensions = [
+  dconf.settings = {
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
 
-  #     ];
-  #     favorite-apps = [
-  #       "google-chrome.desktop"
-  #       "org.gnome.Console.desktop"
-  #       "code.desktop"
-  #       "org.gnome.Nautilus.desktop"
-  #       "sublime_text.desktop"
-  #     ];
-  #   };
+      ];
+      favorite-apps = [
+        "google-chrome.desktop"
+        "org.gnome.Console.desktop"
+        "code.desktop"
+        "org.gnome.Nautilus.desktop"
+        "sublime_text.desktop"
+      ];
+    };
 
-  #   "org/gnome/desktop/interface" = {
-  #     color-scheme = "prefer-dark";
-  #   };
-  #   "org/gnome/desktop/interface" = {
-  #     clock-format = "12h";
-  #   };
-  #   "org/gtk/settings/file-chooser" = {
-  #     clock-format = "12h";
-  #   };
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+    "org/gnome/desktop/interface" = {
+      clock-format = "12h";
+    };
+    "org/gtk/settings/file-chooser" = {
+      clock-format = "12h";
+    };
 
-  #   "org/gnome/desktop/peripherals/touchpad" = {
-  #     tap-to-click = true;
-  #     natural-scroll = false;
-  #   };
+    "org/gnome/desktop/peripherals/touchpad" = {
+      tap-to-click = true;
+      natural-scroll = false;
+    };
 
-  #   "org/gnome/desktop/interface" = {
-  #     font-antialiasing = "rgba";
-  #   };
-  # };
+    "org/gnome/desktop/interface" = {
+      font-antialiasing = "rgba";
+    };
+
+#     "/org/gnome/clocks/world-clocks" = [
+#       location
+#     ];
+#   [{'location': <(uint32 2, <('Bangkok', 'VTBD', true, [(0.24289166005364171, 1.7558012275062955)], [(0.23998277214922031, 1.754346792280731)])>)>}]
+
+# /org/gnome/shell/world-clocks/locations
+#   [<(uint32 2, <('Bangkok', 'VTBD', true, [(0.24289166005364171, 1.7558012275062955)], [(0.23998277214922031, 1.754346792280731)])>)>]
+  };
 
 
 

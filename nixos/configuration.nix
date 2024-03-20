@@ -186,7 +186,10 @@
 
   programs.adb.enable = true;
   programs.wireshark.enable = true;
+
+  # Setup virtualisation
   programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -223,6 +226,7 @@
         # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
         extraGroups = [
           "adbusers"
+          "libvirtd"
           "networkmanager"
           "wheel"
           "wireshark"
@@ -260,7 +264,9 @@
     vim
 
     # Gnome
+    endeavour
     gnome.gnome-tweaks
+    mailspring
 
     # KDE
     # plasma-browser-integration
