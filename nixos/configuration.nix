@@ -266,6 +266,7 @@
     # Gnome
     endeavour
     gnome.gnome-tweaks
+    gnome.zenity # Required for mailspring notifications
     mailspring
 
     # KDE
