@@ -267,7 +267,7 @@
     endeavour
     gnome.gnome-tweaks
     gnome.zenity # Required for mailspring notifications
-    mailspring
+    gnomeExtensions.appindicator
 
     # KDE
     # plasma-browser-integration
@@ -289,6 +289,10 @@
     speedtest-cli
     wget
     wireshark
+
+    # Utils
+    mailspring
+    nicotine-plus
 
   ];
 
