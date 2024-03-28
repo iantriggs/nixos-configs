@@ -188,13 +188,18 @@
       font-antialiasing = "rgba";
     };
 
-#     "/org/gnome/clocks/world-clocks" = [
-#       location
-#     ];
-#   [{'location': <(uint32 2, <('Bangkok', 'VTBD', true, [(0.24289166005364171, 1.7558012275062955)], [(0.23998277214922031, 1.754346792280731)])>)>}]
+    "org/gnome/settings-daemin/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+      sleep-inactive-battery-type = 1800;
+    };
 
-# /org/gnome/shell/world-clocks/locations
-#   [<(uint32 2, <('Bangkok', 'VTBD', true, [(0.24289166005364171, 1.7558012275062955)], [(0.23998277214922031, 1.754346792280731)])>)>]
+    #     "/org/gnome/clocks/world-clocks" = [
+    #       location
+    #     ];
+    #   [{'location': <(uint32 2, <('Bangkok', 'VTBD', true, [(0.24289166005364171, 1.7558012275062955)], [(0.23998277214922031, 1.754346792280731)])>)>}]
+
+    # /org/gnome/shell/world-clocks/locations
+    #   [<(uint32 2, <('Bangkok', 'VTBD', true, [(0.24289166005364171, 1.7558012275062955)], [(0.23998277214922031, 1.754346792280731)])>)>]
   };
 
 
