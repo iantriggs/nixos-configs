@@ -175,6 +175,14 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  # Enable Avahi (mDNS) for printer discovery
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+
+
   # Enable fprint - disabled for now as the implementation seems buggy
   services.fprintd.enable = false;
 
@@ -265,6 +273,7 @@
 
     # Gnome
     endeavour
+    gnome.cheese
     gnome.gnome-tweaks
     gnome.zenity # Required for mailspring notifications
     gnomeExtensions.appindicator
@@ -287,12 +296,14 @@
     fzf
     pciutils
     speedtest-cli
+    usbutils
     wget
     wireshark
 
     # Utils
     mailspring
     nicotine-plus
+    obsidian
 
   ];
 
