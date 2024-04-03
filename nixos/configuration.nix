@@ -277,6 +277,7 @@
     gnome.gnome-tweaks
     gnome.zenity # Required for mailspring notifications
     gnomeExtensions.appindicator
+    gnomeExtensions.dash-to-dock
 
     # KDE
     # plasma-browser-integration
@@ -296,8 +297,10 @@
     fzf
     pciutils
     speedtest-cli
+    traceroute
     usbutils
     wget
+    whois
     wireshark
 
     # Utils
