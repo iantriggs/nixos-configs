@@ -52,6 +52,7 @@
     homeDirectory = "/home/ian";
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
+      KUBECONFIG = "/home/ian/.kube/k8s.trig.gs.conf";
     };
   };
 
@@ -158,7 +159,9 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-
+        "dash-to-dock@micxgx.gmail.com"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
       favorite-apps = [
         "google-chrome.desktop"

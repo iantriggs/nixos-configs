@@ -199,6 +199,17 @@
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
 
+  # Enable Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Experimental = true;
+      };
+    };
+  };
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -210,7 +221,25 @@
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
     #jack.enable = true;
-
+    wireplumber.configPackages = [
+      (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+        		bluez_monitor.properties = {
+        			["bluez5.enable-sbc-xq"] = true,
+        			["bluez5.enable-msbc"] = true,
+        			["bluez5.enable-hw-volume"] = true,
+        			["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+        		}
+        	'')
+    ];
+    # Some BT config. Soon the above block will move to this, see https://nixos.wiki/wiki/PipeWire  
+    # wireplumber.extraLuaConfig.bluetooth."51-bluez-config" = ''
+    #   	bluez_monitor.properties = {
+    #   		["bluez5.enable-sbc-xq"] = true,
+    #   		["bluez5.enable-msbc"] = true,
+    #   		["bluez5.enable-hw-volume"] = true,
+    #   		["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]"
+    #   	}
+    # '';
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
     #media-session.enable = true;
@@ -307,6 +336,7 @@
     mailspring
     nicotine-plus
     obsidian
+    vlc
 
   ];
 
