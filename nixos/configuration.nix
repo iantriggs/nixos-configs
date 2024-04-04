@@ -304,6 +304,7 @@
     endeavour
     gnome.cheese
     gnome.gnome-tweaks
+    gnome.gpaste
     gnome.zenity # Required for mailspring notifications
     gnomeExtensions.appindicator
     gnomeExtensions.dash-to-dock
