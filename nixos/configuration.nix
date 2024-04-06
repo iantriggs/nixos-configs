@@ -304,7 +304,7 @@
     endeavour
     gnome.cheese
     gnome.gnome-tweaks
-    gnome.gpaste
+    stable.gnome.gpaste
     gnome.zenity # Required for mailspring notifications
     gnomeExtensions.appindicator
     gnomeExtensions.dash-to-dock
@@ -325,6 +325,7 @@
     dig
     file
     fzf
+    just
     pciutils
     speedtest-cli
     traceroute
