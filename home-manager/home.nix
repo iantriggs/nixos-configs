@@ -159,8 +159,11 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-        "dash-to-dock@micxgx.gmail.com"
         "appindicatorsupport@rgcjonas.gmail.com"
+        "caffeine@patapon.info"
+        "dash-to-dock@micxgx.gmail.com"
+        "GPaste@gnome-shell-extensions.gnome.org"
+        "mprisLabel@moon-0xff.github.com"
         "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
       favorite-apps = [

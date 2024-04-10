@@ -158,10 +158,6 @@
 
   # };
 
-  # Enable KDE
-  # services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma6.enable = true;
-  # services.xserver.displayManager.sddm.wayland.enable = true;
 
 
   # Configure keymap in X11
@@ -307,11 +303,9 @@
     stable.gnome.gpaste
     gnome.zenity # Required for mailspring notifications
     gnomeExtensions.appindicator
+    gnomeExtensions.caffeine
     gnomeExtensions.dash-to-dock
-
-    # KDE
-    # plasma-browser-integration
-    # wayland-utils
+    gnomeExtensions.mpris-label
 
     # NixOS related
     home-manager
