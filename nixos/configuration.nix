@@ -254,10 +254,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # xdg-portal
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
   users = {
