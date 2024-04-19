@@ -185,8 +185,18 @@
   # Fwupdmgr
   services.fwupd.enable = true;
 
-  # Steam config
-  hardware.opengl.driSupport32Bit = true;
+  # Games
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
   programs.adb.enable = true;
   programs.wireshark.enable = true;
@@ -243,6 +253,10 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+
+  # xdg-portal
+  xdg.portal.enable = true;
+  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
 
   # Configure your system-wide user settings (groups, etc), add more users as needed.
