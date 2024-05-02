@@ -330,6 +330,7 @@
     file
     fzf
     just
+    openssl
     pciutils
     speedtest-cli
     traceroute
