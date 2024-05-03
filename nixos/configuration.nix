@@ -335,6 +335,7 @@
     speedtest-cli
     traceroute
     usbutils
+    ventoy
     wget
     whois
     wireshark
