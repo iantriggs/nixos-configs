@@ -116,7 +116,8 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Australia/Sydney";
+  # time.timeZone = "Australia/Sydney";
+  time.timeZone = "Asia/Bangkok";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.UTF-8";
@@ -298,6 +299,7 @@
     # Dev
     android-tools
     ansible
+    gh
     git
     go
     python3
