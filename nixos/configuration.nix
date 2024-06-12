@@ -116,8 +116,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  # time.timeZone = "Australia/Sydney";
-  time.timeZone = "Asia/Bangkok";
+  time.timeZone = "Australia/Sydney";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.UTF-8";
@@ -205,6 +204,13 @@
   # Setup virtualisation
   programs.virt-manager.enable = true;
   virtualisation.libvirtd.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    autoPrune = {
+      enable = true;
+    };
+  };
 
   # Enable Bluetooth
   hardware.bluetooth = {
@@ -299,12 +305,15 @@
     # Dev
     android-tools
     ansible
+    flyctl
     gh
     git
     go
+    pipx
     python3
-    terraform
+    ruff
     sublime4
+    terraform
     vscode
     vim
 
@@ -312,7 +321,7 @@
     endeavour
     gnome.cheese
     gnome.gnome-tweaks
-    stable.gnome.gpaste
+    gnome.gpaste
     gnome.zenity # Required for mailspring notifications
     gnomeExtensions.appindicator
     gnomeExtensions.caffeine
@@ -346,6 +355,7 @@
     mailspring
     nicotine-plus
     obsidian
+    pinta
     vlc
 
   ];
@@ -359,6 +369,8 @@
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
   ];
+
+  programs.gpaste.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.11";
