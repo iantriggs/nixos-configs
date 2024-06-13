@@ -340,6 +340,7 @@
     dig
     file
     fzf
+    inetutils
     just
     openssl
     pciutils
