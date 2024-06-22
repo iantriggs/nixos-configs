@@ -191,11 +191,17 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     gamescopeSession.enable = true;
+  
   };
-  hardware.opengl = {
+  # hardware.opengl = {
+    # enable = true;
+    # driSupport = true;
+    # driSupport32Bit = true;
+  # };
+
+  hardware.graphics = {
+    enable32Bit = true;
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
   };
 
   programs.adb.enable = true;
@@ -327,6 +333,7 @@
     gnomeExtensions.caffeine
     gnomeExtensions.dash-to-dock
     gnomeExtensions.mpris-label
+    papers
 
     # NixOS related
     home-manager
