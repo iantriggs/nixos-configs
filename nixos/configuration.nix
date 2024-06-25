@@ -191,13 +191,8 @@
     remotePlay.openFirewall = true;
     dedicatedServer.openFirewall = true;
     gamescopeSession.enable = true;
-  
+
   };
-  # hardware.opengl = {
-    # enable = true;
-    # driSupport = true;
-    # driSupport32Bit = true;
-  # };
 
   hardware.graphics = {
     enable32Bit = true;
@@ -360,6 +355,8 @@
     wireshark
 
     # Utils
+    discord
+    foliate
     mailspring
     nicotine-plus
     obsidian
