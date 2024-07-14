@@ -5,13 +5,14 @@ Based on the standard config in [nix-starter-configs](https://github.com/Misteri
 ## Updating
 
 ```bash
-$ sudo nix flake update
+$ nix flake update
 $ sudo nixos-rebuild switch --flake .
 ```
 
-Or use the alias which has been configured in home.nix:
+Or use the aliases which has been configured in home.nix:
 
 ```bash
+$ update-flake
 $ update
 ```
 
@@ -37,4 +38,4 @@ $ update
 - laptop tuning (battery, fan, etc)
 - Move to this - https://github.com/frogamic/nix-machines/tree/main
 - kubeconfig and other secrets in home-manager
-- automatic updates
+- refactor and modularise

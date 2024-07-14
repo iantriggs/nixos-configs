@@ -26,7 +26,7 @@
       # Add overlays your own flake exports (from overlays and pkgs dir):
       outputs.overlays.additions
       outputs.overlays.modifications
-      outputs.overlays.unstable-packages
+      outputs.overlays.stable-packages
 
       # You can also add overlays exported from other flakes:
       # neovim-nightly-overlay.overlays.default
@@ -52,6 +52,7 @@
     homeDirectory = "/home/ian";
     sessionVariables = {
       NIXOS_OZONE_WL = "1";
+      KUBECONFIG = "/home/ian/.kube/k8s.trig.gs.conf";
     };
   };
 
@@ -65,17 +66,15 @@
     fzf
 
     # Dev
+    android-studio
     flutter
     kubectl
     kubectx
-    unstable.android-studio
-
-    # Games
-    steam
+    uv
 
     # Gnome Extensions
     gnomeExtensions.user-themes
-    gnomeExtensions.material-shell
+    # gnomeExtensions.material-shell
 
   ];
 
@@ -91,7 +90,9 @@
 
   programs.zsh = {
     enable = true;
-    enableAutosuggestions = true;
+    autosuggestion = {
+      enable = true;
+    };
     enableCompletion = true;
     plugins = [
       {
@@ -110,7 +111,7 @@
       l = "ls -lah";
       ll = "ls -l";
       update = "sudo nixos-rebuild switch --flake ~/src/nixos-configs/ --show-trace";
-      update-flake = "sudo nix flake update ~/src/nixos-configs/";
+      update-flake = "nix flake update ~/src/nixos-configs/";
       urldecode = "
         python3 - c 'import sys, urllib.parse as ul;
       print(ul.unquote_plus(sys.stdin.read()))'";
@@ -129,7 +130,8 @@
     initExtra = ''
       if [ -n ''\"''\${commands[fzf-share]}''\" ]; then
         source "$(fzf-share)/key-bindings.zsh"
-      fi 
+      fi
+      PATH=$HOME/.local/bin:$PATH
     '';
 
     oh-my-zsh = {
@@ -155,7 +157,12 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
-
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "caffeine@patapon.info"
+        "dash-to-dock@micxgx.gmail.com"
+        "GPaste@gnome-shell-extensions.gnome.org"
+        "mprisLabel@moon-0xff.github.com"
+        "user-theme@gnome-shell-extensions.gcampax.github.com"
       ];
       favorite-apps = [
         "google-chrome.desktop"
@@ -168,6 +175,7 @@
 
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
+      text-scaling-factor = 1.1499999999999999;
     };
     "org/gnome/desktop/interface" = {
       clock-format = "12h";
@@ -184,6 +192,19 @@
     "org/gnome/desktop/interface" = {
       font-antialiasing = "rgba";
     };
+
+    "org/gnome/settings-daemin/plugins/power" = {
+      sleep-inactive-ac-type = "nothing";
+      sleep-inactive-battery-type = 1800;
+    };
+
+    #     "/org/gnome/clocks/world-clocks" = [
+    #       location
+    #     ];
+    #   [{'location': <(uint32 2, <('Bangkok', 'VTBD', true, [(0.24289166005364171, 1.7558012275062955)], [(0.23998277214922031, 1.754346792280731)])>)>}]
+
+    # /org/gnome/shell/world-clocks/locations
+    #   [<(uint32 2, <('Bangkok', 'VTBD', true, [(0.24289166005364171, 1.7558012275062955)], [(0.23998277214922031, 1.754346792280731)])>)>]
   };
 
 
@@ -195,6 +216,6 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
 }
 
