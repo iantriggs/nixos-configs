@@ -362,6 +362,7 @@
     obsidian
     pinta
     vlc
+    zed-editor
 
   ];
 
